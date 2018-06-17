@@ -20,8 +20,9 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TimeManager.h"
+#include "TimePlugin.h"
 #include "SkyManager.generated.h"
 
 
@@ -32,6 +33,8 @@ class ASkyManager : public AActor
 	GENERATED_UCLASS_BODY()
 
 public:
+
+	ATimeManager* TimeManagerActor = FTimePlugin::Get().TimeManagerActor;
 
 	// The current Local Solar Time (in minutes)
 	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
