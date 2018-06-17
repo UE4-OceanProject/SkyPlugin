@@ -60,4 +60,6 @@ Saved/**
 *.lib
 
 Plugins/TimePlugin/*
-Binaries/Win64/UE4Editor-SkyPluginDev.dll
+Binaries/Win64/*
+Plugins/SkyPlugin/Binaries/Win64/*
+Plugins/SkyPlugin/Binaries/Win64/*

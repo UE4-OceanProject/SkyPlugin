@@ -37,6 +37,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
 		float SolarTime = 0.0f;
 
+	// The current Local Clock Time value (in minutes)
+	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+		float LocalClockTime = 0.0f;
+
 	// The current Time Correction factor
 	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
 		float TimeCorrection = 0.0f;
