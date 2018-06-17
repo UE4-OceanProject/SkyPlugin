@@ -22,8 +22,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Sky/TimeDate.h"
-#include "TimeManager.generated.h"
+#include "SkyManager.generated.h"
 
 
 //An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.

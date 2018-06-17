@@ -26,9 +26,9 @@ using System.IO;
 			PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			//Our PrivatePCH that we want to globally #include
-			PrivatePCHHeaderFile = "Classes/SkyPluginPrivatePCH.h";
+			PrivatePCHHeaderFile = "Private/SkyPluginPrivatePCH.h";
         
-			PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", "InputCore", "RHI", "RenderCore" });
+			PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject", "InputCore", "RHI", "RenderCore", "TimePlugin" });
 		    }
 	    }
     

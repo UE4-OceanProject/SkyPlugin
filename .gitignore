@@ -58,3 +58,6 @@ Saved/**
 #Ignore visual studio build files
 *.target
 *.lib
+
+Plugins/TimePlugin/*
+Binaries/Win64/UE4Editor-SkyPluginDev.dll
