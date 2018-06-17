@@ -1,5 +1,5 @@
 /*=================================================
-* FileName: TimeManager.h
+* FileName: SkyManager.h
 *
 * Created by: DotCam
 * Project name: OceanProject
@@ -125,7 +125,7 @@ public:
 	*
 	* @return: FRotator - The sun rotation value for the current time.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "SkyManager")
 		FRotator CalculateSunAngle();
 
 
@@ -135,7 +135,7 @@ public:
 	*
 	* @return: FRotator - The moon rotation value for the current time.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "SkyManager")
 		FRotator CalculateMoonAngle();
 
 
@@ -145,7 +145,7 @@ public:
 	*
 	* @return: FRotator - The moon rotation value for the current time.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "SkyManager")
 		float CalculateMoonPhase();
 
 
