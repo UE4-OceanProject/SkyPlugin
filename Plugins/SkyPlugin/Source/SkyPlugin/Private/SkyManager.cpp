@@ -110,24 +110,24 @@ double ASkyManager::ATan2D(double A, double B)
 
 FRotator ASkyManager::CalculateSunAngle()
     {
-	if (!TimeManagerActor->bIsCalendarInitialized)
+	if (!FTimePlugin::Get().TimeManagerActor->bIsCalendarInitialized)
 	    {
 		return FRotator();
 	    }
 
-	TimeManagerActor->DayOfYear = TimeManagerActor->InternalTime.GetDayOfYear() - 1;
-	double lct = TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
+	FTimePlugin::Get().TimeManagerActor->DayOfYear = FTimePlugin::Get().TimeManagerActor->InternalTime.GetDayOfYear() - 1;
+	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
 
-	double eotBase = (TimeManagerActor->DayOfYear - 81) * (360.0 / 365.242);
+	double eotBase = (FTimePlugin::Get().TimeManagerActor->DayOfYear - 81) * (360.0 / 365.242);
 	double eot = (9.87 * SinD(eotBase * 2)) - (7.53 * CosD(eotBase)) - (1.5 * SinD(eotBase));
 
-	double tcf = ((TimeManagerActor->Longitude - LSTM) * 4) + eot;
+	double tcf = ((FTimePlugin::Get().TimeManagerActor->Longitude - LSTM) * 4) + eot;
 	double solTime = lct + (tcf / 60);
 
 	double hra = (solTime - 12) * 15;
-	double decl = 23.452294 * SinD((360.0 / 365.242) * (TimeManagerActor->DayOfYear - 81));
+	double decl = 23.452294 * SinD((360.0 / 365.242) * (FTimePlugin::Get().TimeManagerActor->DayOfYear - 81));
 
-	double lat = (double)TimeManagerActor->Latitude;
+	double lat = (double)FTimePlugin::Get().TimeManagerActor->Latitude;
 	double saa = ASinD((SinD(decl) * SinD(lat)) + (CosD(decl) * CosD(lat) * CosD(hra)));
 	double saz = ACosD(((SinD(decl) * CosD(lat)) - (CosD(decl) * SinD(lat) * CosD(hra))) / CosD(saa));
 
@@ -153,23 +153,23 @@ FRotator ASkyManager::CalculateSunAngle()
 
 FRotator ASkyManager::CalculateMoonAngle()
     {
-	if (!TimeManagerActor->bIsCalendarInitialized)
+	if (!FTimePlugin::Get().TimeManagerActor->bIsCalendarInitialized)
 	    {
 		return FRotator();
 	    }
 
-	double lct = TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
-	double elapsed = TimeManagerActor->InternalTime.GetJulianDay() - JD2000;
+	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
+	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD2000;
 	double utc;
 
-	if ((lct + TimeManagerActor->SpanUTC.GetHours()) > 24.0)
+	if ((lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) > 24.0)
 	    {
-		utc = (lct + TimeManagerActor->SpanUTC.GetHours()) - 24.0;
+		utc = (lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) - 24.0;
 		elapsed++;
 	    }
 	else
 	    {
-		utc = lct + TimeManagerActor->SpanUTC.GetHours();
+		utc = lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours();
 	    }
 
 	elapsed += (utc / 24.0);
@@ -196,10 +196,10 @@ FRotator ASkyManager::CalculateMoonAngle()
 	double lunarRA = ATan2D((SinD(ecLong) * CosD(EcObliquity)) - (TanD(ecLat) * SinD(EcObliquity)), CosD(ecLong));
 
 	// Calculate Sidereal time (theta) and the Hour Angle (tau)
-	double lunarST = fmod((357.009 + 102.937) + (15 * (utc)) - TimeManagerActor->Longitude, 360.0);
+	double lunarST = fmod((357.009 + 102.937) + (15 * (utc)) - FTimePlugin::Get().TimeManagerActor->Longitude, 360.0);
 	double lunarHRA = lunarST - lunarRA;
 
-	double lat = (double)TimeManagerActor->Latitude;
+	double lat = (double)FTimePlugin::Get().TimeManagerActor->Latitude;
 	double lunarAA = ASinD((SinD(lat) * SinD(lunarDec)) + (CosD(lat) * CosD(lunarDec) * CosD(lunarHRA)));
 	double lunarAz = ATan2D(SinD(lunarHRA), ((CosD(lunarHRA) * SinD(lat)) - (TanD(lunarDec) * CosD(lat))));
 
@@ -227,7 +227,7 @@ FRotator ASkyManager::CalculateMoonAngle()
 float ASkyManager::CalculateMoonPhase()
     {
 	// Last time Lunar year start = solar year start:
-	double elapsed = TimeManagerActor->InternalTime.GetJulianDay() - JD1900;
+	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD1900;
 
 	double cycles = elapsed / 29.530588853;
 	int32 count = FPlatformMath::FloorToInt(cycles);
