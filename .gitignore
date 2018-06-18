@@ -59,7 +59,7 @@ Saved/**
 *.target
 *.lib
 
-Plugins/TimePlugin/*
 Binaries/Win64/*
 Plugins/SkyPlugin/Binaries/Win64/*
 Plugins/SkyPlugin/Binaries/Win64/*
+Plugins/TimePluginDev/
