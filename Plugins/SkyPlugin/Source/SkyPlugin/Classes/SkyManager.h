@@ -24,7 +24,7 @@
 
 
 //An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.
-UCLASS(BlueprintType)
+UCLASS(NotBlueprintable, Transient)
 class ASkyManager : public AActor
 {
 	GENERATED_UCLASS_BODY()
