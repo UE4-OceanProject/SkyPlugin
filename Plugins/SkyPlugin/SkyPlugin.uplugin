@@ -3,18 +3,19 @@
   "Version": 1,
   "VersionName": "1.0",
   "FriendlyName": "Sky Plugin",
-  "Description": "Highly accurate orbital rotation calculation that can be used to drive a sun and/or moon through blueprints in your game. Includes adjustable Latitude, Longitude, and Time Zones  with a complete calendar and time component that can provide a 1:1 simulation of real world data in the past, present, or future",
+  "Description": "Highly accurate orbital rotation calculation that can be used to drive a sun and/or moon through blueprints in your game.",
   "Category": "Sky",
   "CreatedBy": "DotCam",
   "CreatedByURL": "https://forums.unrealengine.com/showthread.php?42092-Community-Project-WIP-Weather-amp-Ocean-Water-Shader",
-  "DocsURL": "TODO",
+  "DocsURL": "",
   "SupportURL": "https://forums.unrealengine.com/showthread.php?42092-Community-Project-WIP-Weather-amp-Ocean-Water-Shader",
   "EnabledByDefault": true,
   "CanContainContent": true,
   "Modules": [
     {
       "Name": "SkyPlugin",
-      "Type": "Runtime"
+      "Type": "Developer",
+      "LoadingPhase": "PreDefault"
     }
   ],
   "Plugins": [

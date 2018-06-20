@@ -1,13 +1,21 @@
-#pragma once
-#include "ModuleManager.h"
+// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 
-class FSkyPlugin : public IModuleInterface
+#pragma once
+
+#include "SkyManager.h"
+#include "ModuleManager.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
+
+DECLARE_LOG_CATEGORY_EXTERN(SkyPlugin, Log, All);
+
+class SKYPLUGIN_API FSkyPlugin : public IModuleInterface
 {
 public:
 	/** IModuleInterface implementation */
-	void StartupModule();
-	void ShutdownModule();
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
 
+	void OnWorldCreated(UWorld* World, const UWorld::InitializationValues IVS);
 	/**
 	* Singleton-like access to this module's interface.  This is just for convenience!
 	* Beware of calling this during the shutdown phase, though.  Your module might have been unloaded already.
@@ -29,5 +37,6 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("SkyPlugin");
 	}
 	
+	ASkyManager* SkyManagerActor;
 };
 

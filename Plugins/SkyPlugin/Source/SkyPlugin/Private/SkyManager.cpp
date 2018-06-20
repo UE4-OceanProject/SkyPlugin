@@ -245,7 +245,7 @@ float ASkyManager::CalculateMoonPhase()
 /* ------------------------------------------------------- */
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ASkyManager::CalculateMoonAngle()
 // {
 // 	double lct = (InternalTime + SpanUTC).GetTimeOfDay().GetTotalHours();
 // 	double elapsedDays = InternalTime.GetJulianDay() - JD2000;  // T
@@ -360,7 +360,7 @@ float ASkyManager::CalculateMoonPhase()
 
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ASkyManager::CalculateMoonAngle()
 // {
 // 	double lct = InternalTime.GetTimeOfDay().GetTotalMinutes();
 // 	double elapsed = InternalTime.GetJulianDay() + (lct / 1440) - JD2000; // -0.5) -1;
@@ -432,7 +432,7 @@ float ASkyManager::CalculateMoonPhase()
 // }
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ASkyManager::CalculateMoonAngle()
 // {
 // 	ElapsedJD1900 = (InternalTime.GetJulianDay() - JD1900) / 36525;
 // 	double actualEcObl = EcObliquity - (0.0130125 * ElapsedJD1900) - (0.00000164 * pow(ElapsedJD1900, 2)) - (0.000000503 * pow(ElapsedJD1900, 3));
@@ -501,7 +501,7 @@ float ASkyManager::CalculateMoonPhase()
 
 // UN-Modified Original
 
-// 	FRotator ATimeManager::CalculateMoonAngle()
+// 	FRotator ASkyManager::CalculateMoonAngle()
 // 	{
 // 		double lct = InternalTime.GetTimeOfDay().GetTotalMinutes();
 // 		double elapsed = ((InternalTime.GetJulianDay() - 1) + (lct / 1440)) - (JD2000 - 0.5);
