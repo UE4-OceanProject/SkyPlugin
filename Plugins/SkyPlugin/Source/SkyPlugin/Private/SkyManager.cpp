@@ -121,6 +121,9 @@ FRotator ASkyManager::CalculateSunAngle()
 	double eotBase = (FTimePlugin::Get().TimeManagerActor->DayOfYear - 81) * (360.0 / 365.242);
 	double eot = (9.87 * SinD(eotBase * 2)) - (7.53 * CosD(eotBase)) - (1.5 * SinD(eotBase));
 
+	// Local Standard Time Meridian (degrees) = 15 * Hour Offset from UTC
+	LSTM = 15 * (FTimePlugin::Get().TimeManagerActor->OffsetUTC);
+
 	double tcf = ((FTimePlugin::Get().TimeManagerActor->Longitude - LSTM) * 4) + eot;
 	double solTime = lct + (tcf / 60);
 
