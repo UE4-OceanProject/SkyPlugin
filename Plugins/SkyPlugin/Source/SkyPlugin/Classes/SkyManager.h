@@ -32,84 +32,84 @@ class ASkyManager : public AActor
 public:
 
 	// The current Local Solar Time (in minutes)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarTime = 0.0f;
 
 	// The current Local Clock Time value (in minutes)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float LocalClockTime = 0.0f;
 
 	// The current Time Correction factor
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float TimeCorrection = 0.0f;
 
 	// The value of the local Standard Time Meridian (15deg intervals)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		int32 LSTM = 0;
 
 	// THe current Equation of Time value
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float EoT = 0.0f;
 
 	// The current Altitude Angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarAltAngle = 0.0f;
 
 	// The current Declination angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarDeclination = 0.0f;
 
 	// The Azimuth angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarAzimuth = 0.0f;
 
 	// The current Hour Angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarHRA = 0.0f;
 
 	// The current Sidereal Time value
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float SiderealTime = 0.0f;
 
 	// The current Altitude Angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarAltAngle = 0.0f;
 
 	// The current Hour Angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarHRA = 0.0f;
 
 	// The current Declination angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarDeclination = 0.0f;
 
 	// The current Azimuth angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarAzimuth = 0.0f;
 
 	// The current Right Ascension angle for the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarRightAsc = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float LunarElapsedDays = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float EcLongitude = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float EcLatitude = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float EcDistance = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float PartL = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float PartM = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float PartF = 0.0f;
 
 	// -------------------
