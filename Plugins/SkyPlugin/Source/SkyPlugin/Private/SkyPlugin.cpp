@@ -40,14 +40,6 @@ void FSkyPlugin::OnWorldCreated(UWorld* World, const UWorld::InitializationValue
 	FRotator rotate = FRotator(0, 0, 0);
 	FActorSpawnParameters SpawnInfo;
 	SkyManagerActor = World->SpawnActor<ASkyManager>(ASkyManager::StaticClass(), location, rotate, SpawnInfo);
-	//SkyManagerActor = NewObject TimeManagerActor;
-	int32 Year, Month, Day, DayOfWeek;
-	int32 Hour, Minute, Second, Millisecond;
-
-	FPlatformTime::SystemTime(Year, Month, DayOfWeek, Day, Hour, Minute, Second, Millisecond);
-	FTimeDateStruct Time = FTimeDateStruct(Year, Month, Day, Hour, Minute, Second, Millisecond);
-	//SkyManagerActor->InitializeCalendar(Time, 0, false, 0, 0);
-	//SkyManagerActor->IncrementTime(0);
 }
 
 

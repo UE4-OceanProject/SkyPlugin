@@ -27,6 +27,20 @@ ASkyManager::ASkyManager(const class FObjectInitializer& PCIP) : Super(PCIP)
 	PrimaryActorTick.bCanEverTick = true;
     }
 
+void ASkyManager::OnConstruction(const FTransform& Transform)
+{
+}
+
+void ASkyManager::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void ASkyManager::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
 
 /* --- Utility Functions --- */
 
@@ -110,11 +124,6 @@ double ASkyManager::ATan2D(double A, double B)
 
 FRotator ASkyManager::CalculateSunAngle()
     {
-	if (!FTimePlugin::Get().TimeManagerActor->bIsCalendarInitialized)
-	    {
-		return FRotator();
-	    }
-
 	FTimePlugin::Get().TimeManagerActor->DayOfYear = FTimePlugin::Get().TimeManagerActor->InternalTime.GetDayOfYear() - 1;
 	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
 
@@ -156,11 +165,6 @@ FRotator ASkyManager::CalculateSunAngle()
 
 FRotator ASkyManager::CalculateMoonAngle()
     {
-	if (!FTimePlugin::Get().TimeManagerActor->bIsCalendarInitialized)
-	    {
-		return FRotator();
-	    }
-
 	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
 	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD2000;
 	double utc;

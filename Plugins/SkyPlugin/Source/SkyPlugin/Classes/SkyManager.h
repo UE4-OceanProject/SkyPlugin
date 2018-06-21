@@ -23,13 +23,19 @@
 #include "SkyManager.generated.h"
 
 
-//An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.
-UCLASS(NotBlueprintable, Transient)
+//An actor based Sun/Moon rotation/phase calculator.
+//Transient will prevent this from being saved since we autospawn this anyways
+//Removed the Transient property, plugin will spawn this if its missing, and wont if its already there
+UCLASS(NotBlueprintable)
 class ASkyManager : public AActor
 {
 	GENERATED_UCLASS_BODY()
 
 public:
+
+	virtual void OnConstruction(const FTransform& Transform) override;
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	// The current Local Solar Time (in minutes)
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
