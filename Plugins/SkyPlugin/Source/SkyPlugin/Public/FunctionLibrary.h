@@ -1,8 +1,18 @@
+/*=================================================
+* For parts referencing UE4 code, the following copyright applies:
+* Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+*
+* Feel free to use this software in any commercial/free game.
+* Selling this as a plugin/item, in whole or part, is not allowed.
+* See LICENSE for full licensing details.
+* =================================================*/
+
 #pragma once
+
 #include "SkyPlugin.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "FunctionLibrary.generated.h"
- 
+
 /*
 *	Function library class.
 *	Each function in it is expected to be static and represents blueprint node that can be called in any blueprint.
@@ -21,8 +31,8 @@
 *	https://wiki.unrealengine.com/Custom_Blueprint_Node_Creation
 */
 
-UCLASS() 
-class USkyManagerFunctionLibrary :	public UBlueprintFunctionLibrary
+UCLASS()
+class USkyManagerFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
@@ -32,3 +42,9 @@ class USkyManagerFunctionLibrary :	public UBlueprintFunctionLibrary
 		return FSkyPlugin::Get().SkyManagerActor;
 	}
 };
+
+USkyManagerFunctionLibrary::USkyManagerFunctionLibrary(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+
+}

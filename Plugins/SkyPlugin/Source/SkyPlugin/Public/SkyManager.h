@@ -1,24 +1,14 @@
 /*=================================================
-* FileName: SkyManager.h
-*
-* Created by: DotCam
-* Project name: OceanProject
-* Unreal Engine version: 4.18.3
-* Created on: 2015/07/12
-*
-* Last Edited on: 2018/05/31
-* Last Edited by: Dotcam
-*
-* -------------------------------------------------
 * For parts referencing UE4 code, the following copyright applies:
 * Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 *
 * Feel free to use this software in any commercial/free game.
 * Selling this as a plugin/item, in whole or part, is not allowed.
-* See "OceanProject\License.md" for full licensing details.
+* See LICENSE for full licensing details.
 * =================================================*/
 
 #pragma once
+
 #include "GameFramework/Actor.h"
 #include "SkyManager.generated.h"
 
@@ -165,64 +155,6 @@ private:
 
 	// Obliquity of the Ecliptic (as of 2000/01/01 - approximation, but fairly accurate)
 	double EcObliquity = 23.4397;
-
-	/* --- Utility Functions --- */
-
-	// Float versions
-
-	// Performs FMath::Sin(input) using degrees
-	float SinD(float input);
-
-	// Performs FMath::Asin(input) using degrees
-	float ASinD(float input);
-
-	// Performs FMath::Cos(input) using degrees
-	float CosD(float input);
-
-	// Performs FMath::Acos(input) using degrees
-	float ACosD(float input);
-
-	// Performs FMath::Tan(input) using degrees
-	float TanD(float input);
-
-	// Performs FMath::Atan(input) using degrees
-	float ATanD(float input);
-
-	// Performs FMath::Atan2(A, B) using degrees
-	float ATan2D(float A, float B);
-
-	// Double versions
-
-	// Performs FMath::Sin(input) using degrees
-	double SinD(double input);
-
-	// Performs FMath::Asin(input) using degrees
-	double ASinD(double input);
-
-	// Performs FMath::Cos(input) using degrees
-	double CosD(double input);
-
-	// Performs FMath::Acos(input) using degrees
-	double ACosD(double input);
-
-	// Performs FMath::Tan(input) using degrees
-	double TanD(double input);
-
-	// Performs FMath::Atan(input) using degrees
-	double ATanD(double input);
-
-	// Performs FMath::Atan2(A, B) using degrees
-	double ATan2D(double A, double B);
-
-
-
-	// TODO - Requires extra functions & rewriting to accommodate, FUTURE/NOT URGENT
-	// Designates that the calendar should use custom Date & Time struct rather than
-	// using the built in DateTime values. This is useful for worlds that have longer days,
-	// months, and years.
-	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "DateTime")
-	//bool UsingCustomCaledar;
-
 
     };
 

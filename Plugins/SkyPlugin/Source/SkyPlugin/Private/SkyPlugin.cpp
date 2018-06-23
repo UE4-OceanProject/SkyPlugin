@@ -1,4 +1,11 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+/*=================================================
+* For parts referencing UE4 code, the following copyright applies:
+* Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+*
+* Feel free to use this software in any commercial/free game.
+* Selling this as a plugin/item, in whole or part, is not allowed.
+* See LICENSE for full licensing details.
+* =================================================*/
 
 #include "SkyPlugin.h"
 #include "EngineUtils.h"
@@ -27,13 +34,13 @@ void FSkyPlugin::ShutdownModule()
 
 void FSkyPlugin::OnWorldCreated(UWorld* World, const UWorld::InitializationValues IVS)
 {
-	//If we already have a TimeManagerActor do not spawn another one
-	//Just store it as the current TimeManagerActor for other plugins to use
-	//Only pick the first instance, still need to code in single instance enforcement
+	//If we already have a SkyManagerActor do not spawn another one
+	//Just store it as the current SkyManagerActor for other plugins to use
+	//Only pick the first instance
 
 	for (TActorIterator<ASkyManager> ActorItr(World); ActorItr; ++ActorItr)
 	{
-		//SkyManagerActor = *ActorItr;
+		SkyManagerActor = *ActorItr;
 		return;
 	}
 	FVector location = FVector(0, 0, 0);
