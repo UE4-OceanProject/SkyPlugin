@@ -11,7 +11,7 @@
 
 #include "SkyPlugin.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "FunctionLibrary.generated.h"
+#include "BPFunctionLibrary.generated.h"
 
 /*
 *	Function library class.
