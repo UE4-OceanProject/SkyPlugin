@@ -17,38 +17,52 @@ void FSkyPlugin::StartupModule()
 	UE_LOG(SkyPlugin, Warning, TEXT("TimePlugin StartupModle() Register OnWorldCreated delegate"));
 
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	//Create our delegate type
-	FWorldDelegates::FWorldInitializationEvent::FDelegate OnWorldCreatedDelegate;
-	//Declare which function we want to bind to
-	OnWorldCreatedDelegate = FWorldDelegates::FWorldInitializationEvent::FDelegate::CreateRaw(this, &FSkyPlugin::OnWorldCreated);
-	//Declare which event we want to bind to
-	FDelegateHandle OnWorldCreatedDelegateHandle = FWorldDelegates::OnPostWorldInitialization.Add(OnWorldCreatedDelegate);
-}
 
+	//Auto create our TimeManager
+	//This is called everytime UWorld is created, which is a lot in the editor (every opened BP gets a UWorld)
+	FWorldDelegates::OnPostWorldInitialization.AddRaw(this, &FSkyPlugin::CheckSingletonActor);
+}
 
 void FSkyPlugin::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
+	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
 }
 
-void FSkyPlugin::OnWorldCreated(UWorld* World, const UWorld::InitializationValues IVS)
+void FSkyPlugin::CheckSingletonActor(UWorld* World, const UWorld::InitializationValues IVS)
 {
-	//If we already have a SkyManagerActor do not spawn another one
-	//Just store it as the current SkyManagerActor for other plugins to use
-	//Only pick the first instance
 
-	for (TActorIterator<ASkyManager> ActorItr(World); ActorItr; ++ActorItr)
+	//Make sure we are in the correct UWorld!
+	if (World->WorldType == EWorldType::Game || EWorldType::PIE || EWorldType::GamePreview || EWorldType::GameRPC || EWorldType::Editor || EWorldType::PIE)
 	{
-		SkyManagerActor = *ActorItr;
-		return;
-	}
-	FVector location = FVector(0, 0, 0);
-	FRotator rotate = FRotator(0, 0, 0);
-	FActorSpawnParameters SpawnInfo;
-	SkyManagerActor = World->SpawnActor<ASkyManager>(ASkyManager::StaticClass(), location, rotate, SpawnInfo);
-}
+		//If we already have a SkyManagerActor do not spawn another one
+		//Just store it as the current SkyManagerActor for other plugins to use
+		//Only pick the first instance, still need to code in single instance enforcement
+		bool bFoundFirstInstance = false;
+		for (TActorIterator<ASkyManager> ActorItr(World); ActorItr; ++ActorItr)
+		{
+			if (bFoundFirstInstance == false)
+			{
+				SkyManagerActor = *ActorItr;
+				bFoundFirstInstance = true;
+			}
+			else
+			{
+				ActorItr->Destroy();
+			}
+		}
+		if (bFoundFirstInstance == true)
+		{
+			return;
+		}
+		FVector location = FVector(0, 0, 0);
+		FRotator rotate = FRotator(0, 0, 0);
+		FActorSpawnParameters SpawnInfo;
+		SkyManagerActor = World->SpawnActor<ASkyManager>(ASkyManager::StaticClass(), location, rotate, SpawnInfo);
 
+	}
+}
 
 IMPLEMENT_MODULE(FSkyPlugin, SkyPlugin)
 
