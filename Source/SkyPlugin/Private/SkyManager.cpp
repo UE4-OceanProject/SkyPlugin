@@ -19,6 +19,7 @@ ASkyManager::ASkyManager(const class FObjectInitializer& PCIP) : Super(PCIP)
 
 void ASkyManager::OnConstruction(const FTransform& Transform)
 {
+	UpdateSky();
 }
 
 void ASkyManager::BeginPlay()
@@ -29,10 +30,15 @@ void ASkyManager::BeginPlay()
 void ASkyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	UpdateSky();
 }
 
-FRotator ASkyManager::CalculateSunAngle()
-    {
+void ASkyManager::CalculateSunAngle()
+{
+	if (bFreezeSky)
+	{
+		return;
+	}
 	FTimePlugin::Get().TimeManagerActor->DayOfYear = FTimePlugin::Get().TimeManagerActor->InternalTime.GetDayOfYear() - 1;
 	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
 
@@ -53,9 +59,9 @@ FRotator ASkyManager::CalculateSunAngle()
 	double saz = ACosD(((SinD(decl) * CosD(lat)) - (CosD(decl) * SinD(lat) * CosD(hra))) / CosD(saa));
 
 	if (hra >= 0.0)
-	    {
+	{
 		saz = saz * -1;
-	    }
+	}
 
 	// TEMPORARY - For debug only
 	LocalClockTime = (float)lct;
@@ -67,26 +73,28 @@ FRotator ASkyManager::CalculateSunAngle()
 	SolarAltAngle = (float)saa;
 	SolarAzimuth = (float)saz;
 
-	return FRotator(SolarAltAngle - 180, SolarAzimuth, 0);
-    }
+	SunRotation = FRotator(SolarAltAngle - 180, SolarAzimuth, 0);
+}
 
-
-
-FRotator ASkyManager::CalculateMoonAngle()
-    {
+void ASkyManager::CalculateMoonAngle()
+{
+	if (bFreezeSky)
+	{
+		return;
+	}
 	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
 	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD2000;
 	double utc;
 
 	if ((lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) > 24.0)
-	    {
+	{
 		utc = (lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) - 24.0;
 		elapsed++;
-	    }
+	}
 	else
-	    {
+	{
 		utc = lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours();
-	    }
+	}
 
 	elapsed += (utc / 24.0);
 
@@ -135,21 +143,33 @@ FRotator ASkyManager::CalculateMoonAngle()
 	LunarAltAngle = (float)lunarAA;
 	LunarAzimuth = (float)lunarAz;
 
+	MoonRotation = FRotator(LunarAltAngle, LunarAzimuth, 0);
+}
 
-	return FRotator(LunarAltAngle, LunarAzimuth, 0);
-    }
-
-
-float ASkyManager::CalculateMoonPhase()
-    {
+void ASkyManager::CalculateMoonPhase()
+{
+	if (bFreezeSky)
+	{
+		return;
+	}
 	// Last time Lunar year start = solar year start:
 	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD1900;
 
 	double cycles = elapsed / 29.530588853;
 	int32 count = FPlatformMath::FloorToInt(cycles);
 	cycles -= count;
-	return cycles;
-    }
+	MoonPhase = cycles;
+}
+
+void ASkyManager::UpdateSky()
+{
+	if (bAutoUpdate)
+	{
+		CalculateSunAngle();
+		CalculateMoonAngle();
+		CalculateMoonPhase();
+	}
+}
 
 
 

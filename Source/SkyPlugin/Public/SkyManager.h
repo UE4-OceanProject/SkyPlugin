@@ -27,6 +27,15 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+		bool bAutoUpdate = true;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+		bool bFreezeSky = false;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
+		FRotator SunRotation = FRotator(0, 0, 0);
+
 	// The current Local Solar Time (in minutes)
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarTime = 0.0f;
@@ -62,6 +71,12 @@ public:
 	// The current Hour Angle of the sun
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarHRA = 0.0f;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
+		FRotator MoonRotation = FRotator(0, 0, 0);
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
+		float MoonPhase = 0;
 
 	// The current Sidereal Time value
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
@@ -120,7 +135,7 @@ public:
 	* @return: FRotator - The sun rotation value for the current time.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "SkyManager")
-		FRotator CalculateSunAngle();
+		void CalculateSunAngle();
 
 
 	/**
@@ -130,7 +145,7 @@ public:
 	* @return: FRotator - The moon rotation value for the current time.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "SkyManager")
-		FRotator CalculateMoonAngle();
+		void CalculateMoonAngle();
 
 
 	/**
@@ -140,7 +155,16 @@ public:
 	* @return: FRotator - The moon rotation value for the current time.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "SkyManager")
-		float CalculateMoonPhase();
+		void CalculateMoonPhase();
+
+
+	/**
+	* @Name: UpdateSky
+	* @Description: Calculates Sun angle and Moon angle and phase
+	*
+	*/
+	UFUNCTION(BlueprintCallable, Category = "SkyManager")
+		void UpdateSky();
 
 
 private:
