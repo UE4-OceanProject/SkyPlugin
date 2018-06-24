@@ -36,10 +36,10 @@ class USkyManagerFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
-	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Sky Instance", Keywords = ""), Category = "SkyManager")
-	static ASkyManager * GetSkyManager()
+		UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Sky Instance", Keywords = ""), meta = (WorldContext = "WorldContextObject"), Category = "SkyManager")
+		static ASkyManager * GetSkyManager(UObject* WorldContextObject)
 	{
-		return FSkyPlugin::Get().SkyManagerActor;
+		return FSkyPlugin::Get().GetSingletonActor(WorldContextObject);
 	}
 };
 

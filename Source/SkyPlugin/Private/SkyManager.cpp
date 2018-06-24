@@ -39,22 +39,22 @@ void ASkyManager::CalculateSunAngle()
 	{
 		return;
 	}
-	FTimePlugin::Get().TimeManagerActor->DayOfYear = FTimePlugin::Get().TimeManagerActor->InternalTime.GetDayOfYear() - 1;
-	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
+	FTimePlugin::Get().GetSingletonActor(this)->DayOfYear = FTimePlugin::Get().GetSingletonActor(this)->InternalTime.GetDayOfYear() - 1;
+	double lct = FTimePlugin::Get().GetSingletonActor(this)->InternalTime.GetTimeOfDay().GetTotalHours();
 
-	double eotBase = (FTimePlugin::Get().TimeManagerActor->DayOfYear - 81) * (360.0 / 365.242);
+	double eotBase = (FTimePlugin::Get().GetSingletonActor(this)->DayOfYear - 81) * (360.0 / 365.242);
 	double eot = (9.87 * SinD(eotBase * 2)) - (7.53 * CosD(eotBase)) - (1.5 * SinD(eotBase));
 
 	// Local Standard Time Meridian (degrees) = 15 * Hour Offset from UTC
-	LSTM = 15 * (FTimePlugin::Get().TimeManagerActor->OffsetUTC);
+	LSTM = 15 * (FTimePlugin::Get().GetSingletonActor(this)->OffsetUTC);
 
-	double tcf = ((FTimePlugin::Get().TimeManagerActor->Longitude - LSTM) * 4) + eot;
+	double tcf = ((FTimePlugin::Get().GetSingletonActor(this)->Longitude - LSTM) * 4) + eot;
 	double solTime = lct + (tcf / 60);
 
 	double hra = (solTime - 12) * 15;
-	double decl = 23.452294 * SinD((360.0 / 365.242) * (FTimePlugin::Get().TimeManagerActor->DayOfYear - 81));
+	double decl = 23.452294 * SinD((360.0 / 365.242) * (FTimePlugin::Get().GetSingletonActor(this)->DayOfYear - 81));
 
-	double lat = (double)FTimePlugin::Get().TimeManagerActor->Latitude;
+	double lat = (double)FTimePlugin::Get().GetSingletonActor(this)->Latitude;
 	double saa = ASinD((SinD(decl) * SinD(lat)) + (CosD(decl) * CosD(lat) * CosD(hra)));
 	double saz = ACosD(((SinD(decl) * CosD(lat)) - (CosD(decl) * SinD(lat) * CosD(hra))) / CosD(saa));
 
@@ -82,18 +82,18 @@ void ASkyManager::CalculateMoonAngle()
 	{
 		return;
 	}
-	double lct = FTimePlugin::Get().TimeManagerActor->InternalTime.GetTimeOfDay().GetTotalHours();
-	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD2000;
+	double lct = FTimePlugin::Get().GetSingletonActor(this)->InternalTime.GetTimeOfDay().GetTotalHours();
+	double elapsed = FTimePlugin::Get().GetSingletonActor(this)->InternalTime.GetJulianDay() - JD2000;
 	double utc;
 
-	if ((lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) > 24.0)
+	if ((lct + FTimePlugin::Get().GetSingletonActor(this)->SpanUTC.GetHours()) > 24.0)
 	{
-		utc = (lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours()) - 24.0;
+		utc = (lct + FTimePlugin::Get().GetSingletonActor(this)->SpanUTC.GetHours()) - 24.0;
 		elapsed++;
 	}
 	else
 	{
-		utc = lct + FTimePlugin::Get().TimeManagerActor->SpanUTC.GetHours();
+		utc = lct + FTimePlugin::Get().GetSingletonActor(this)->SpanUTC.GetHours();
 	}
 
 	elapsed += (utc / 24.0);
@@ -120,10 +120,10 @@ void ASkyManager::CalculateMoonAngle()
 	double lunarRA = ATan2D((SinD(ecLong) * CosD(EcObliquity)) - (TanD(ecLat) * SinD(EcObliquity)), CosD(ecLong));
 
 	// Calculate Sidereal time (theta) and the Hour Angle (tau)
-	double lunarST = fmod((357.009 + 102.937) + (15 * (utc)) - FTimePlugin::Get().TimeManagerActor->Longitude, 360.0);
+	double lunarST = fmod((357.009 + 102.937) + (15 * (utc)) - FTimePlugin::Get().GetSingletonActor(this)->Longitude, 360.0);
 	double lunarHRA = lunarST - lunarRA;
 
-	double lat = (double)FTimePlugin::Get().TimeManagerActor->Latitude;
+	double lat = (double)FTimePlugin::Get().GetSingletonActor(this)->Latitude;
 	double lunarAA = ASinD((SinD(lat) * SinD(lunarDec)) + (CosD(lat) * CosD(lunarDec) * CosD(lunarHRA)));
 	double lunarAz = ATan2D(SinD(lunarHRA), ((CosD(lunarHRA) * SinD(lat)) - (TanD(lunarDec) * CosD(lat))));
 
@@ -153,7 +153,7 @@ void ASkyManager::CalculateMoonPhase()
 		return;
 	}
 	// Last time Lunar year start = solar year start:
-	double elapsed = FTimePlugin::Get().TimeManagerActor->InternalTime.GetJulianDay() - JD1900;
+	double elapsed = FTimePlugin::Get().GetSingletonActor(this)->InternalTime.GetJulianDay() - JD1900;
 
 	double cycles = elapsed / 29.530588853;
 	int32 count = FPlatformMath::FloorToInt(cycles);

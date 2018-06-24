@@ -21,7 +21,12 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	void CheckSingletonActor(UWorld* World, const UWorld::InitializationValues IVS);
+	void EnforceSingletonActor(UWorld * World);
+	ASkyManager * SpawnSingletonActor(UWorld * World);
+	void InitSingletonActor(UWorld * World, const UWorld::InitializationValues IVS);
+
+	ASkyManager * GetSingletonActor(UObject* WorldContextObject);
+
 	/**
 	* Singleton-like access to this module's interface.  This is just for convenience!
 	* Beware of calling this during the shutdown phase, though.  Your module might have been unloaded already.
@@ -42,7 +47,5 @@ public:
 	{
 		return FModuleManager::Get().IsModuleLoaded("SkyPlugin");
 	}
-
-	ASkyManager* SkyManagerActor;
 };
 

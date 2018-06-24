@@ -27,12 +27,15 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 
+	//Auto tick update the sky
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 		bool bAutoUpdate = true;
 
+	//Prevent updates to sky if manually calling update functions in BP
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 		bool bFreezeSky = false;
 
+	//The current sun rotation to be applied to the sun actor
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		FRotator SunRotation = FRotator(0, 0, 0);
 
@@ -72,10 +75,12 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		float SolarHRA = 0.0f;
 
+	//The current moon rotation to be applied to the moon actor
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
 		FRotator MoonRotation = FRotator(0, 0, 0);
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Sun Debug")
+	//The crescent shape phase of the moon
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Lunar Debug")
 		float MoonPhase = 0;
 
 	// The current Sidereal Time value
