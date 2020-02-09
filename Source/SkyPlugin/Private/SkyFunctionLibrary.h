@@ -11,7 +11,7 @@
 
 #include "SkyPlugin.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "BPFunctionLibrary.generated.h"
+#include "SkyFunctionLibrary.generated.h"
 
 /*
 *	Function library class.
@@ -32,19 +32,13 @@
 */
 
 UCLASS()
-class USkyManagerFunctionLibrary : public UBlueprintFunctionLibrary
+class SKYPLUGIN_API USkyManagerFunctionLibrary : public UBlueprintFunctionLibrary
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
 		UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Sky Instance", Keywords = ""), meta = (WorldContext = "WorldContextObject"), Category = "SkyManager")
 		static ASkyManager * GetSkyManager(UObject* WorldContextObject)
-	{
-		return FSkyPlugin::Get().GetSingletonActor(WorldContextObject);
-	}
+		{
+			return FSkyPlugin::Get().GetSingletonActor(WorldContextObject);
+		}
 };
-
-USkyManagerFunctionLibrary::USkyManagerFunctionLibrary(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
-{
-
-}
