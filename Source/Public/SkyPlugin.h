@@ -10,7 +10,6 @@
 #pragma once
 
 #include "SkyManager.h"
-#include "ModuleManager.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(SkyPlugin, Log, All);
 

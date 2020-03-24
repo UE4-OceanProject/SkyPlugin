@@ -17,8 +17,8 @@ public class SkyPlugin : ModuleRules
 
     public SkyPlugin(ReadOnlyTargetRules Target) : base(Target)
     {
-        //Our PrivatePCH that we want to globally #include
-        PrivatePCHHeaderFile = "Private/PrivatePCH.h";
+		//Our PrivatePCH that we want to globally #include
+		PrivatePCHHeaderFile = "Private/PrivatePCH.h";
 
         // Make sure UBT reminds us of how to keep the project IWYU compliant
         bEnforceIWYU = true;
@@ -35,7 +35,7 @@ public class SkyPlugin : ModuleRules
 
         PrivateIncludePaths.AddRange(
             new string[] {
-                "SkyPlugin/Private",
+                "Private",
 				
 				// ... add other private include paths required here ...
 			}
