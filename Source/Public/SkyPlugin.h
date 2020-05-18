@@ -20,9 +20,7 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	void EnforceSingletonActor(UWorld * World);
 	ASkyManager * SpawnSingletonActor(UWorld * World);
-	void InitSingletonActor(UWorld * World, const UWorld::InitializationValues IVS);
 
 	ASkyManager * GetSingletonActor(UObject* WorldContextObject);
 
