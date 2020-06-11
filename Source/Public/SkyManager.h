@@ -283,10 +283,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
 		float TimeCorrection = 0.0f;
 
-	// The value of the local Standard Time Meridian (15deg intervals)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
-		int32 LSTM = 0;
-
 	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
 		int32 DayOfYear = 0;
 

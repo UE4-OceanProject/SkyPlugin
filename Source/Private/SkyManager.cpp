@@ -150,8 +150,9 @@ void ASkyManager::InitSunMoonCalculator(int year, int month, int day, int h, int
 	int32 TzOffsetMinutes = (TzHour < 0) ? TzHour * 60 - TzMinute : TzHour * 60 + TzMinute;
 	CalcTime -= FTimespan::FromMinutes(TzOffsetMinutes);
 
-
-	double jd = CalcTime.GetJulianDay() + CalcTime.GetTimeOfDay().GetTotalHours() / 24.0;
+	double jdHr = CalcTime.GetTimeOfDay().GetTotalHours();
+	double jdDay = CalcTime.GetJulianDay();
+	double jd = jdDay + jdHr / 24.0;
 
 	TTminusUT = 0;
 	if (CalcTime.GetYear() > -600 && CalcTime.GetYear() < 2200) {
