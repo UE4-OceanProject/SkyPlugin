@@ -1,15 +1,8 @@
-/*=================================================
-* For parts referencing UE4 code, the following copyright applies:
-* Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
-*
-* Feel free to use this software in any commercial/free game.
-* Selling this as a plugin/item, in whole or part, is not allowed.
-* See LICENSE for full licensing details.
-* =================================================*/
+// For copyright see LICENSE in EnvironmentProject root dir, or:
+//https://github.com/UE4-OceanProject/OceanProject/blob/Master-Environment-Project/LICENSE
 
 #include "SkyPlugin.h"
 #include "EngineUtils.h"
-#include "Editor/EditorEngine.h"
 
 DEFINE_LOG_CATEGORY(SkyPlugin);
 
@@ -26,7 +19,7 @@ void FSkyPlugin::ShutdownModule()
 
 
 
-ASkyManager * FSkyPlugin::SpawnSingletonActor(UWorld * World)
+ASkyManager* FSkyPlugin::SpawnSingletonActor(UWorld* World)
 {
 	FVector location = FVector(0, 0, 0);
 	FRotator rotate = FRotator(0, 0, 0);
@@ -35,7 +28,7 @@ ASkyManager * FSkyPlugin::SpawnSingletonActor(UWorld * World)
 }
 
 
-ASkyManager * FSkyPlugin::GetSingletonActor(UObject* WorldContextObject)
+ASkyManager* FSkyPlugin::GetSingletonActor(UObject* WorldContextObject)
 {
 	UWorld* World = WorldContextObject->GetWorld();
 

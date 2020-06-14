@@ -15,7 +15,7 @@
     {
       "Name": "SkyPlugin",
       "Type": "Runtime",
-      "LoadingPhase": "PreDefault"
+      "LoadingPhase": "Default"
     }
   ],
   "Plugins": [

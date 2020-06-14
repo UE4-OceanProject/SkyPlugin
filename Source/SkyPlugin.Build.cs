@@ -1,30 +1,13 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+// For copyright see LICENSE in EnvironmentProject root dir, or:
+//https://github.com/UE4-OceanProject/OceanProject/blob/Master-Environment-Project/LICENSE
 
 using UnrealBuildTool;
-using System.IO;
 
 public class SkyPlugin : ModuleRules
 {
-    private string ModulePath
-    {
-        get { return Path.GetDirectoryName(ModuleDirectory); }
-    }
-
-    private string ThirdPartyPath
-    {
-        get { return Path.GetFullPath(Path.Combine(ModulePath, "../../ThirdParty/")); }
-    }
-
     public SkyPlugin(ReadOnlyTargetRules Target) : base(Target)
     {
-		//Our PrivatePCH that we want to globally #include
-		PrivatePCHHeaderFile = "Private/PrivatePCH.h";
-
-        // Make sure UBT reminds us of how to keep the project IWYU compliant
-        bEnforceIWYU = true;
-
-        //Enable IWYU but keep our PrivatePCH in use
-        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PublicIncludePaths.AddRange(
             new string[] {
@@ -35,7 +18,6 @@ public class SkyPlugin : ModuleRules
 
         PrivateIncludePaths.AddRange(
             new string[] {
-                "Private",
 				
 				// ... add other private include paths required here ...
 			}
@@ -46,6 +28,7 @@ public class SkyPlugin : ModuleRules
             new string[]
             {
                 "Core",
+                "TimePlugin"
 				
 				// ... add other public dependencies that you statically link with here ...
 			}
@@ -56,10 +39,7 @@ public class SkyPlugin : ModuleRules
             new string[]
             {
                 "CoreUObject",
-                "Engine",
-                "Slate",
-                "SlateCore",
-                "TimePlugin"
+                "Engine"
 
 				// ... add private dependencies that you statically link with here ...	
 			}
@@ -72,6 +52,9 @@ public class SkyPlugin : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
             );
+
+        // Make sure UBT reminds us of how to keep the project IWYU compliant
+        bEnforceIWYU = true;
     }
 }
 

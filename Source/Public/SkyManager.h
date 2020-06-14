@@ -154,18 +154,18 @@ public:
 		 * center of the object is at -12 degrees of geometric elevation below the
 		 * astronomical horizon.
 		 */
-		TWILIGHT_NAUTICAL,
-		/**
-		 * Event ID for calculation of rising and setting times for civil twilight.
-		 * In this case, the calculated time will be the time when the center of the
-		 * object is at -6 degrees of geometric elevation below the astronomical
-		 * horizon.
-		 */
-		TWILIGHT_CIVIL,
-		/**
-		 * The standard value of 34' for the refraction at the local horizon.
-		 */
-		HORIZON_34arcmin
+		 TWILIGHT_NAUTICAL,
+		 /**
+		  * Event ID for calculation of rising and setting times for civil twilight.
+		  * In this case, the calculated time will be the time when the center of the
+		  * object is at -6 degrees of geometric elevation below the astronomical
+		  * horizon.
+		  */
+		  TWILIGHT_CIVIL,
+		  /**
+		   * The standard value of 34' for the refraction at the local horizon.
+		   */
+		   HORIZON_34arcmin
 	};
 
 	/** The set of events to calculate (rise/set/transit events). */
@@ -394,7 +394,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TimeManager")
 		FEphemeris CalculateMoonAngle(float Latitude2, float Longitude2, float TimeZone, bool bIsDaylightSavingTime,
 			int32 Year, int32 Month, int32 Day, int32 Hours, int32 Minutes, int32 Seconds,
-			float &moonIll2, float &moonAngle, float &moonPhaseAngle, float &moonPhaseShadowAngle, float &moonBL2, float &moonPar2, float &SiderealTime2);
+			float& moonIll2, float& moonAngle, float& moonPhaseAngle, float& moonPhaseShadowAngle, float& moonBL2, float& moonPar2, float& SiderealTime2);
 	UFUNCTION(BlueprintCallable, Category = "TimeManager")
 		FEphemeris CalculateSunAngle(float Latitude2, float Longitude2, float TimeZone, bool bIsDaylightSavingTime, int32 Year, int32 Month, int32 Day, int32 Hours, int32 Minutes, int32 Seconds);
 
