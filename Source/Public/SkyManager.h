@@ -45,9 +45,10 @@ struct FEphemeris
 {
 	GENERATED_BODY()
 
-		/** Values for azimuth, elevation, rise, set, and transit for the Sun. Angles in radians, rise ...
- * as Julian days in UT. Distance in AU. */
-		UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+public:
+	/** Values for azimuth, elevation, rise, set, and transit for the Sun. Angles in radians, rise ...
+	 * as Julian days in UT. Distance in AU. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 		float azimuth;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 		float  elevation;
@@ -125,12 +126,10 @@ struct FEphemeris
 UCLASS(BlueprintType)
 class ASkyManager : public AActor
 {
-	GENERATED_UCLASS_BODY()
-
-
-
+	GENERATED_BODY()
 
 public:
+	ASkyManager(const class FObjectInitializer& ObjectInitializer);
 
 	virtual void OnConstruction(const FTransform& Transform) override;
 	virtual void BeginPlay() override;

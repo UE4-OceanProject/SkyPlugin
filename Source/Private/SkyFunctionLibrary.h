@@ -29,7 +29,7 @@ UCLASS()
 class SKYPLUGIN_API USkyManagerFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-
+public:
 		UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Sky Instance", Keywords = ""), meta = (WorldContext = "WorldContextObject"), Category = "SkyManager")
 		static ASkyManager* GetSkyManager(UObject* WorldContextObject)
 		{
