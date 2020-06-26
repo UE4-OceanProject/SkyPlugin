@@ -44,7 +44,7 @@ float ATanD(float input)
 // Performs FMath::Atan2(A, B) using degrees
 float ATan2D(float A, float B)
 {
-	return (180.f / PI) * FMath::Atan2(A, B);
+	return (180.0f / PI) * FMath::Atan2(A, B);
 }
 
 // Double versions
