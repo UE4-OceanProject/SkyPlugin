@@ -138,7 +138,7 @@ public:
 	ATimeManager* TimeManager;
 
 	/** The set of twilights to calculate (types of rise/set events). */
-	const enum TWILIGHT {
+	enum TWILIGHT {
 		/**
 		 * Event ID for calculation of rising and setting times for astronomical
 		 * twilight. In this case, the calculated time will be the time when the
@@ -168,7 +168,7 @@ public:
 	};
 
 	/** The set of events to calculate (rise/set/transit events). */
-	const enum EVENT {
+	enum EVENT {
 		/** Rise. */
 		RISE,
 		/** Set. */

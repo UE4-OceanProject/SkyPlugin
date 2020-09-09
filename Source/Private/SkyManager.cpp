@@ -558,7 +558,7 @@ FString  ASkyManager::getDateAsString(double jd) {
 	if (date[3] < 10) zh = "0";
 	if (date[4] < 10) zm = "0";
 	if (date[5] < 10) zs = "0";
-	return date[0] + "/" + zyr + FString::FromInt(date[1]) + "/" + zmo + FString::FromInt(date[2]) + " " + zh + FString::FromInt(date[3]) + ":" + zm + FString::FromInt(date[4]) + ":" + zs + FString::FromInt(date[5]) + " UT";
+	return FString::FromInt(date[0]) + "/" + zyr + FString::FromInt(date[1]) + "/" + zmo + FString::FromInt(date[2]) + " " + zh + FString::FromInt(date[3]) + ":" + zm + FString::FromInt(date[4]) + ":" + zs + FString::FromInt(date[5]) + " UT";
 }
 
 /**
