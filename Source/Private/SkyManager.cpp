@@ -1,6 +1,6 @@
 #include "SkyManager.h"
 #include "UtilityFunctions.h"
-#include "Kismet/KismetMathLibrary.h"
+//#include "Kismet/KismetMathLibrary.h"
 #include "SkyPlugin.h"
 #include "TimePlugin.h"
 
@@ -142,6 +142,7 @@ void ASkyManager::InitSunMoonCalculator(int year, int month, int day, int h, int
 	//FDateTime::ParseIso8601(*Iso8601Time, CalcTime);
 
 	//FString Test = CalcTime.ToString();
+	if(year ==0 ) return;
 	FDateTime CalcTime(year, month, day, h, m, s, 0);
 
 	// adjust for the timezone (bringing the DateTime into UTC)

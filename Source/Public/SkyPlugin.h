@@ -2,10 +2,13 @@
 //https://github.com/UE4-OceanProject/OceanProject/blob/Master-Environment-Project/LICENSE
 
 #pragma once
-
 #include "SkyManager.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(SkyPlugin, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogSkyPlugin, Display, All);
+#define PLUGIN_FUNC (FString(__FUNCTION__))              // Current Class Name + Function Name where this is called
+#define PLUGIN_LINE (FString::FromInt(__LINE__))         // Current Line Number in the code where this is called
+#define PLUGIN_FUNC_LINE (PLUGIN_FUNC + "(Line: " + PLUGIN_LINE + ")") // Current Class and Line Number where this is called!
+
 
 class SKYPLUGIN_API FSkyPlugin : public IModuleInterface
 {
@@ -39,4 +42,3 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("SkyPlugin");
 	}
 };
-

@@ -4,33 +4,36 @@
 #include "SkyPlugin.h"
 #include "EngineUtils.h"
 
-DEFINE_LOG_CATEGORY(SkyPlugin);
+DEFINE_LOG_CATEGORY(LogSkyPlugin);
 
 void FSkyPlugin::StartupModule()
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+	UE_LOG(LogSkyPlugin, Log, TEXT("%s:: Module started"), *PLUGIN_FUNC_LINE);
 }
 
 void FSkyPlugin::ShutdownModule()
 {
-	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-	// we call this function before unloading the module.
 }
-
-
 
 ASkyManager* FSkyPlugin::SpawnSingletonActor(UWorld* World)
 {
-	FVector location = FVector(0, 0, 0);
-	FRotator rotate = FRotator(0, 0, 0);
 	FActorSpawnParameters SpawnInfo;
-	return World->SpawnActor<ASkyManager>(ASkyManager::StaticClass(), location, rotate, SpawnInfo);
+	ASkyManager* TimeManager = World->SpawnActor<ASkyManager>(ASkyManager::StaticClass(), FTransform::Identity, FActorSpawnParameters());
+	if (!TimeManager)
+		UE_LOG(LogSkyPlugin, Warning, TEXT("%s:: Failed to spawn Singleton!"), *PLUGIN_FUNC_LINE);
+
+	return TimeManager;
 }
 
 
 ASkyManager* FSkyPlugin::GetSingletonActor(UObject* WorldContextObject)
 {
 	UWorld* World = WorldContextObject->GetWorld();
+	
+	if ((World->WorldType == EWorldType::EditorPreview) || (World->WorldType == EWorldType::GamePreview))
+		return NULL;
+	if (World->bIsRunningConstructionScript)
+		return NULL;
 
 	//Find the sky manager if there is one spawned 
 	for (TActorIterator<ASkyManager> ActorItr(World); ActorItr; ++ActorItr)
@@ -39,6 +42,7 @@ ASkyManager* FSkyPlugin::GetSingletonActor(UObject* WorldContextObject)
 	}
 
 	//If there isn't a sky manager in the world return null!
+	UE_LOG(LogSkyPlugin, Display, TEXT("%s:: No SkyManager found... spawning..."), *PLUGIN_FUNC_LINE);
 	return NULL;
 }
 

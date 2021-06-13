@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+//#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "TimeDateStruct.h"
 #include "TimeManager.h"
@@ -221,13 +221,13 @@ public:
 /** Moon illumination percentage (0-1), Position angle of axis, Bright Limb angle, Paralactic angle*/
 
 	double moonIll, moonP, moonBL, moonPar;
-	UPROPERTY(BlueprintReadOnly, Category = "TimeManager")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float moonIll_out;
-	UPROPERTY(BlueprintReadOnly, Category = "TimeManager")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float moonP_out;
-	UPROPERTY(BlueprintReadOnly, Category = "TimeManager")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float moonBL_out;
-	UPROPERTY(BlueprintReadOnly, Category = "TimeManager")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float moonPar_out;
 
 	//XXX Added constant as is used at multiple places
@@ -271,107 +271,118 @@ private:
 
 public:
 	// The current Local Solar Time (in minutes)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float SolarTime = 0.0f;
 
 	// The current Local Clock Time value (in minutes)
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float LocalClockTime = 0.0f;
 
 	// The current Time Correction factor
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float TimeCorrection = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		int32 DayOfYear = 0;
 
 	// THe current Equation of Time value
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float EoT = 0.0f;
 
 	// The current Altitude Angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float SolarAltAngle = 0.0f;
 
 	// The current Declination angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float SolarDeclination = 0.0f;
 
 	// The Azimuth angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float SolarAzimuth = 0.0f;
 
 	// The current Hour Angle of the sun
-	UPROPERTY(BlueprintReadOnly, Category = "Sun Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Sun")
 		float SolarHRA = 0.0f;
 
+	// The current rotation sun
+	UPROPERTY(BlueprintReadWrite, Category = "Sun")
+		FRotator SunRotation = FRotator(0,0,0);
+
+
+
+
+	// The current rotation Moon
+	UPROPERTY(BlueprintReadWrite, Category = "Moon")
+		FRotator MoonRotation = FRotator(0, 0, 0);
+
 	// The current Sidereal Time value
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float SiderealTime = 0.0f;
 
 	// The current Altitude Angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarAltAngle = 0.0f;
 
 	// The current Hour Angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarHRA = 0.0f;
 
 	// The current Declination angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarDeclination = 0.0f;
 
 	// The current Azimuth angle of the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarAzimuth = 0.0f;
 
 	// The current Right Ascension angle for the moon
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarRightAsc = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarElapsedDays = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float JulianDateonTTscale = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float EcLongitude = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float EcLatitude = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float EcDistance = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float EcDistanceRadii = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float PartL = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float PartM = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float PartF = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarPhase_Fraction = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarPhase_Phase = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarPhase_Angle = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarParallax = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarAngularRadius = 0.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Lunar Debug")
+	UPROPERTY(BlueprintReadOnly, Category = "Moon")
 		float LunarAdjustedAngularRadious = 0.0f;
 
 
@@ -387,14 +398,14 @@ public:
 *
 * @return: FRotator - The moon rotation value for the current time.
 */
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "SunMoon")
 		FRotator CalculateSunMoonAngle(float Latitude2, float Longitude2, float TimeZone, bool bIsDaylightSavingTime, int32 Year, int32 Month, int32 Day, int32 Hours, int32 Minutes, int32 Seconds);
 
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "Moon")
 		FEphemeris CalculateMoonAngle(float Latitude2, float Longitude2, float TimeZone, bool bIsDaylightSavingTime,
 			int32 Year, int32 Month, int32 Day, int32 Hours, int32 Minutes, int32 Seconds,
 			float& moonIll2, float& moonAngle, float& moonPhaseAngle, float& moonPhaseShadowAngle, float& moonBL2, float& moonPar2, float& SiderealTime2);
-	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	UFUNCTION(BlueprintCallable, Category = "Sun")
 		FEphemeris CalculateSunAngle(float Latitude2, float Longitude2, float TimeZone, bool bIsDaylightSavingTime, int32 Year, int32 Month, int32 Day, int32 Hours, int32 Minutes, int32 Seconds);
 
 
