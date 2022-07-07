@@ -402,7 +402,7 @@ FEphemeris* ASkyManager::doCalc(TArray<double> pos, bool geocentric) {
 
 	// Obtain topocentric equatorial coordinates
 	double ra = 0.0;
-	double dec = PI_OVER_TWO;
+	double dec = HALF_PI;
 	if (ztopo < 0.0) dec = -dec;
 	if (ytopo != 0.0 || xtopo != 0.0) {
 		ra = FMath::Atan2(ytopo, xtopo);
@@ -425,9 +425,9 @@ FEphemeris* ASkyManager::doCalc(TArray<double> pos, bool geocentric) {
 
 	// Get apparent elevation
 	if (alt > -3 * DEG_TO_RAD) {
-		double r = 0.016667 * DEG_TO_RAD * FMath::Abs(FMath::Tan(PI_OVER_TWO - (alt * RAD_TO_DEG + 7.31 / (alt * RAD_TO_DEG + 4.4)) * DEG_TO_RAD));
+		double r = 0.016667 * DEG_TO_RAD * FMath::Abs(FMath::Tan(HALF_PI - (alt * RAD_TO_DEG + 7.31 / (alt * RAD_TO_DEG + 4.4)) * DEG_TO_RAD));
 		double refr = r * (0.28 * 1010 / (10 + 273.0)); // Assuming pressure of 1010 mb and T = 10 C
-		alt = FMath::Min(alt + refr, PI_OVER_TWO); // This is not accurate, but acceptable
+		alt = FMath::Min(alt + refr, HALF_PI); // This is not accurate, but acceptable
 
 	}
 
@@ -461,9 +461,9 @@ FEphemeris* ASkyManager::doCalc(TArray<double> pos, bool geocentric) {
 	double transit_time2 = celestialHoursToEarthTime * (normalizeRadians(ra - lst) - TWO_PI);
 	double transit_alt = FMath::Asin(FMath::Sin(dec) * FMath::Sin(obsLat) + FMath::Cos(dec) * FMath::Cos(obsLat));
 	if (transit_alt > -3 * DEG_TO_RAD) {
-		double r = 0.016667 * DEG_TO_RAD * FMath::Abs(FMath::Tan(PI_OVER_TWO - (transit_alt * RAD_TO_DEG + 7.31 / (transit_alt * RAD_TO_DEG + 4.4)) * DEG_TO_RAD));
+		double r = 0.016667 * DEG_TO_RAD * FMath::Abs(FMath::Tan(HALF_PI - (transit_alt * RAD_TO_DEG + 7.31 / (transit_alt * RAD_TO_DEG + 4.4)) * DEG_TO_RAD));
 		double refr = r * (0.28 * 1010 / (10 + 273.0)); // Assuming pressure of 1010 mb and T = 10 C
-		transit_alt = FMath::Min(transit_alt + refr, PI_OVER_TWO); // This is not accurate, but acceptable
+		transit_alt = FMath::Min(transit_alt + refr, HALF_PI); // This is not accurate, but acceptable
 	}
 
 	// Obtain the current event in time
@@ -673,7 +673,7 @@ TArray<double> ASkyManager::getMoonDiskOrientationAngles()
 		par = FMath::Atan2(y, x);
 	}
 	else {
-		par = (y / FMath::Abs(y)) * PI_OVER_TWO;
+		par = (y / FMath::Abs(y)) * HALF_PI;
 	}
 	//return TArray<double> {lp, bp, p, bl, par, lst};
 	return TArray<double> {lp, bp, p, bl, par, lst};

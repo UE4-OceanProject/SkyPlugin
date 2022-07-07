@@ -21,11 +21,6 @@ const double AU = 149597870.691;
 /** Earth equatorial radius in km. IERS 2003 Conventions. */
 const double EARTH_RADIUS = 6378.1366;
 
-/** Two times Pi. */
-const double TWO_PI = 2.0 * PI;
-
-/** Pi divided by two. */
-const double PI_OVER_TWO = PI / 2.0;
 
 /** Julian century conversion constant = 100 * days per year. */
 const double JULIAN_DAYS_PER_CENTURY = 36525.0;
@@ -124,7 +119,7 @@ public:
 */
 //An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.
 UCLASS(BlueprintType)
-class ASkyManager : public AActor
+class SKYPLUGIN_API ASkyManager : public AActor
 {
 	GENERATED_BODY()
 
